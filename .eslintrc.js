@@ -26,4 +26,7 @@ module.exports = {
     "node_modules/",
   ],
   overrides: [{ files: ["*.js?(x)", "*.ts?(x)"] }],
+  rules: {
+    "react/no-unstable-nested-components": "off"
+  }
 };
