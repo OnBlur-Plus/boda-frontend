@@ -69,7 +69,7 @@ function AccidentStatus() {
             style={styles.viewMore}
           >
             <Text style={styles.label}>더보기</Text>
-            <Icon name="chevron-right" size={16} color="#858691" />
+            <Icon name="chevron-right" size={18} color="#858691" />
           </TouchableOpacity>
         )}
       </View>
@@ -110,7 +110,7 @@ function CctvStatus() {
             style={styles.viewMore}
           >
             <Text style={styles.label}>전체 보기</Text>
-            <Icon name="chevron-right" size={16} color="#858691" />
+            <Icon name="chevron-right" size={18} color="#858691" />
           </TouchableOpacity>
         )}
       </View>
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontFamily: 'Pretendard-Regular',
-    fontSize: 12,
+    fontSize: 14,
     color: '#858691',
   },
   empty: {
