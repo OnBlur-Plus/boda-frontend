@@ -1,12 +1,11 @@
-import { useRef } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import Video, { VideoRef } from 'react-native-video'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { AppStackParamList } from '../App'
 import AccidentItem from '../components/AccidentItem'
 import ApiLoader from '../components/ApiLoader'
 import Cctv from '../components/Cctv'
 import Divider from '../components/Divider'
+import Streaming from '../components/Streaming'
 import { useGetAccidentsByStreamKey } from '../hooks/useGetAccidentsByStreamKey'
 import { useGetCctvItem } from '../hooks/useGetCctvItem'
 import { format } from 'date-fns'
@@ -32,7 +31,6 @@ export default function CctvDetailScreen({
 }
 
 function CctvDetail({ streamKey }: Props) {
-  const ref = useRef<VideoRef>(null)
   const {
     data: { title, subTitle, status },
   } = useGetCctvItem(streamKey)
@@ -40,13 +38,7 @@ function CctvDetail({ streamKey }: Props) {
   return (
     <View style={styles.wrapper}>
       <Cctv title={title} subTitle={subTitle} status={status}>
-        <Video
-          ref={ref}
-          source={{
-            uri: 'http://43.202.50.21:2022/detect/hls/livestream/index.m3u8',
-          }}
-          style={styles.video}
-        />
+        <Streaming streamKey={streamKey} />
       </Cctv>
     </View>
   )
@@ -86,13 +78,6 @@ const styles = StyleSheet.create({
   wrapper: { paddingVertical: 32, paddingHorizontal: 16 },
   title: { marginBottom: 30, fontFamily: 'Pretendard-Bold', fontSize: 18 },
   list: { gap: 25 },
-  video: {
-    overflow: 'hidden',
-    width: '100%',
-    aspectRatio: 16 / 9,
-    backgroundColor: '#000000',
-    borderRadius: 8,
-  },
   empty: {
     paddingVertical: 32,
     fontFamily: 'Pretendard-Regular',

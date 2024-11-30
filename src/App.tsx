@@ -17,7 +17,7 @@ import NotificationScreen from './screens/NotificationScreen'
 import { useAccessTokenStore } from './store/auth'
 import { displayNotification } from './utils/notification'
 
-const SPLASH_SHOW_TIME = 3000
+const SPLASH_SHOW_TIME = 1500
 const queryClient = new QueryClient()
 
 export const AppStackScreens = {
