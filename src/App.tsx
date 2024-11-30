@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { StatusBar, StyleSheet } from 'react-native'
 import BootSplash from 'react-native-bootsplash'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
+import messaging from '@react-native-firebase/messaging'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -14,6 +15,7 @@ import CctvListScreen from './screens/CctvListScreen'
 import HomeScreen from './screens/HomeScreen'
 import NotificationScreen from './screens/NotificationScreen'
 import { useAccessTokenStore } from './store/auth'
+import { displayNotification } from './utils/notification'
 
 const SPLASH_SHOW_TIME = 3000
 const queryClient = new QueryClient()
@@ -48,16 +50,24 @@ export default function App() {
 
   useEffect(() => {
     setTimeout(() => BootSplash.hide({ fade: true }), SPLASH_SHOW_TIME)
+
+    const unsubscribe = messaging().onMessage(
+      async remoteMessage => await displayNotification(remoteMessage),
+    )
+
+    return unsubscribe
   }, [])
 
   return (
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>
         <NavigationContainer>
-          <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
+          <StatusBar backgroundColor="#ffffff" barStyle="light-content" />
 
           <SafeAreaView style={style.container}>
-            <Stack.Navigator screenOptions={{ header: Header }}>
+            <Stack.Navigator
+              screenOptions={{ header: Header, navigationBarColor: '#ffffff' }}
+            >
               {!accessToken ? (
                 <Stack.Screen
                   name={AppStackScreens.Auth}

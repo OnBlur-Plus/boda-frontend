@@ -31,9 +31,7 @@ function Notifications() {
   const navigation = useNavigation()
 
   useEffect(() => {
-    mutate(undefined, {
-      onSettled: (result, error) => console.log(result, error),
-    })
+    mutate()
   }, [mutate])
 
   const renderItem = useCallback<ListRenderItem<Notification>>(

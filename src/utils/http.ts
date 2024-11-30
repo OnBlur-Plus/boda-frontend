@@ -1,5 +1,6 @@
-const getEndpoint = (url: string) =>
-  new URL(url, 'http://localhost:5000').toString()
+import { SERVER_ENDPOINT } from '@env'
+
+const getEndpoint = (url: string) => new URL(url, SERVER_ENDPOINT).toString()
 
 export const http = {
   get: async function get<Response = unknown>(
