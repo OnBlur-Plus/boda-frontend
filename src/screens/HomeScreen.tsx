@@ -14,8 +14,7 @@ import ApiLoader from '../components/ApiLoader'
 import Divider from '../components/Divider'
 import { useGetAccidentsByDate } from '../hooks/useGetAccidentsByDate'
 import { useGetCctvList } from '../hooks/useGetCctvList'
-import { formatDistanceToNow } from 'date-fns'
-import { ko } from 'date-fns/locale'
+import { formatDistanceToNow } from '../utils/date'
 
 const IMAGES = {
   good: require('../assets/image/good.png'),
@@ -76,18 +75,17 @@ function AccidentStatus() {
 
       <View style={styles.list}>
         {data.length > 0 ? (
-          data.slice(0, 3).map(({ id, startAt, reason, level }) => (
-            <AccidentItem
-              id={id}
-              reason={reason}
-              description={formatDistanceToNow(new Date(startAt), {
-                addSuffix: true,
-                locale: ko,
-              })}
-              level={level}
-              key={id}
-            />
-          ))
+          data.slice(0, 3).map(({ id, startAt, reason, level }) => {
+            return (
+              <AccidentItem
+                id={id}
+                reason={reason}
+                description={formatDistanceToNow(new Date(startAt))}
+                level={level}
+                key={id}
+              />
+            )
+          })
         ) : (
           <Text style={styles.empty}>재해 발생 내역이 존재하지 않습니다.</Text>
         )}
