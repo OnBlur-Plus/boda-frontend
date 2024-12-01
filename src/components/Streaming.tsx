@@ -24,7 +24,9 @@ export default function Streaming({ streamKey }: Props) {
         scrollEnabled={false}
         injectedJavaScript=""
         onLoadEnd={() =>
-          ref.current?.postMessage(`${STREAM_ENDPOINT}/${streamKey}/index.m3u8`)
+          ref.current?.postMessage(
+            `${STREAM_ENDPOINT}/detect/hls/${streamKey}/index.m3u8`,
+          )
         }
       />
     </View>

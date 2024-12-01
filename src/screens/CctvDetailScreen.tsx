@@ -38,7 +38,13 @@ function CctvDetail({ streamKey }: Props) {
   return (
     <View style={styles.wrapper}>
       <Cctv title={title} subTitle={subTitle} status={status}>
-        <Streaming streamKey={streamKey} />
+        {status === 'LIVE' ? (
+          <Streaming streamKey={streamKey} />
+        ) : (
+          <View style={styles.video}>
+            <Text style={styles.videoText}>라이브 상태가 아닙니다.</Text>
+          </View>
+        )}
       </Cctv>
     </View>
   )
@@ -76,6 +82,20 @@ function Accidents({ streamKey }: Props) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#ffffff' },
   wrapper: { paddingVertical: 32, paddingHorizontal: 16 },
+  video: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    aspectRatio: 16 / 9,
+    backgroundColor: '#000000',
+    borderRadius: 8,
+  },
+  videoText: {
+    fontFamily: 'Pretendard-Bold',
+    fontSize: 16,
+    color: '#ffffff',
+  },
   title: { marginBottom: 30, fontFamily: 'Pretendard-Bold', fontSize: 18 },
   list: { gap: 25 },
   empty: {

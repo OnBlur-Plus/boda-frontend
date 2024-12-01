@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { FlatList, Image, ListRenderItem, StyleSheet, View } from 'react-native'
+import { STREAM_ENDPOINT } from '@env'
 import { useNavigation } from '@react-navigation/native'
 import { AppStackScreens } from '../App'
 import ApiLoader from '../components/ApiLoader'
@@ -22,7 +23,7 @@ function List() {
   const navigation = useNavigation()
 
   const renderItem = useCallback<ListRenderItem<CctvType>>(
-    ({ item: { streamKey, title, subTitle, thumbnailUrl, status } }) => (
+    ({ item: { streamKey, title, subTitle, status } }) => (
       <Cctv
         title={title}
         subTitle={subTitle}
@@ -31,7 +32,10 @@ function List() {
           navigation.navigate(AppStackScreens.CctvDetail, { streamKey })
         }
       >
-        <Image source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
+        <Image
+          source={{ uri: `${STREAM_ENDPOINT}/${streamKey}.png` }}
+          style={styles.thumbnail}
+        />
       </Cctv>
     ),
     [navigation],

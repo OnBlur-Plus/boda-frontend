@@ -7,7 +7,6 @@ export type CctvType = {
   title: string
   subTitle: string
   status: 'LIVE' | 'IDLE'
-  thumbnailUrl: string
   createdAt: string // '2024-11-29T17:14:35.620Z'
   updatedAt: string // '2024-11-29T17:14:35.620Z'
 }
