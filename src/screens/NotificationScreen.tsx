@@ -36,8 +36,9 @@ function Notifications() {
   const renderItem = useCallback<ListRenderItem<Notification>>(
     ({
       item: {
+        accidentId,
         createdAt,
-        notificationContent: { title, body, accidentId },
+        notificationContent: { title, body },
       },
     }) => (
       <TouchableWithoutFeedback

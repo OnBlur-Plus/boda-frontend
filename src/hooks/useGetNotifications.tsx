@@ -3,10 +3,9 @@ import { useAccessTokenStore } from '../store/auth'
 import { http } from '../utils/http'
 
 type NotificationContent = {
-  id: number
+  id: string
   title: string
   body: string
-  accidentId: number
   createdAt: string // '2024-11-29T19:39:55.847Z'
   updatedAt: string // '2024-11-29T19:39:55.847Z'
 }
@@ -14,6 +13,7 @@ type NotificationContent = {
 export type Notification = {
   id: number
   isSent: boolean
+  accidentId: number
   readedAt: string | null
   createdAt: string // '2024-11-29T19:40:36.120Z'
   updatedAt: string // '2024-11-29T19:40:36.120Z'

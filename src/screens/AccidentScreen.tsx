@@ -67,23 +67,25 @@ function Accident({ id }: Props) {
         </View>
       </View>
 
-      {videoUrl && (
-        <>
-          <Divider />
+      <Divider />
 
-          <View style={styles.wrapper}>
-            <Text style={styles.title}>발생 시점 영상</Text>
+      <View style={styles.wrapper}>
+        <Text style={styles.title}>발생 시점 영상</Text>
 
-            <Video
-              source={{ uri: videoUrl }}
-              style={styles.video}
-              resizeMode="contain"
-              controls
-              paused
-            />
+        {videoUrl ? (
+          <Video
+            source={{ uri: videoUrl }}
+            style={styles.video}
+            resizeMode="contain"
+            controls
+            paused
+          />
+        ) : (
+          <View style={styles.videoEmpty}>
+            <Text style={styles.videoText}>영상이 존재하지 않습니다.</Text>
           </View>
-        </>
-      )}
+        )}
+      </View>
     </Fragment>
   )
 }
@@ -114,5 +116,19 @@ const styles = StyleSheet.create({
     aspectRatio: 16 / 9,
     backgroundColor: '#000000',
     borderRadius: 8,
+  },
+  videoEmpty: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    aspectRatio: 16 / 9,
+    backgroundColor: '#000000',
+    borderRadius: 8,
+  },
+  videoText: {
+    fontFamily: 'Pretendard-Bold',
+    fontSize: 16,
+    color: '#ffffff',
   },
 })
