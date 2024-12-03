@@ -12,5 +12,6 @@ export function useGetAccidentsByStreamKey(streamKey: string) {
       await http.get<AccidentType[]>(`/accident/stream/${streamKey}`, {
         Authorization: `Bearer ${token}`,
       }),
+    refetchInterval: 1000,
   })
 }
